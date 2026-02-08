@@ -7,19 +7,20 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex min-h-screen w-full flex-col bg-muted/40">
-            <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-                {/* Desktop Sidebar (Fixed or part of grid? using grid for now) */}
-                <div className="hidden border-r bg-muted/40 md:block md:w-[220px] lg:w-[280px] fixed inset-y-0 left-0 z-10">
+        <div className="flex min-h-screen w-full bg-muted/40 p-4 gap-4">
+            {/* Floating Sidebar */}
+            <div className="hidden md:flex flex-col w-[280px] shrink-0 gap-2">
+                <div className="flex h-full flex-col rounded-xl border bg-background/60 backdrop-blur-xl shadow-sm">
                     <Sidebar />
                 </div>
+            </div>
 
-                <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14 md:pl-[220px] lg:pl-[280px]">
-                    <Header />
-                    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-                        {children}
-                    </main>
-                </div>
+            {/* Main Content Area */}
+            <div className="flex flex-1 flex-col rounded-xl border bg-background/60 backdrop-blur-xl shadow-sm overflow-hidden">
+                <Header />
+                <main className="flex-1 overflow-y-auto p-4 sm:p-6">
+                    {children}
+                </main>
             </div>
         </div>
     );

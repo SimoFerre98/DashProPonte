@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
     Avatar,
     AvatarFallback,
@@ -46,11 +47,11 @@ export function UserNav() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                        Profilo
+                    <DropdownMenuItem asChild>
+                        <Link href="/dashboard/profile" className="cursor-pointer">Profilo</Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        Impostazioni
+                    <DropdownMenuItem asChild>
+                        <Link href="/dashboard/settings" className="cursor-pointer">Impostazioni</Link>
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />

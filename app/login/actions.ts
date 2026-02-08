@@ -22,3 +22,28 @@ export async function login(formData: FormData) {
     revalidatePath("/", "layout");
     redirect("/dashboard");
 }
+
+export async function signup(formData: FormData) {
+    const supabase = await createClient();
+
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    const fullName = formData.get("full_name") as string;
+
+    const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+            data: {
+                full_name: fullName,
+            },
+        },
+    });
+
+    if (error) {
+        return redirect("/login?error=" + error.message);
+    }
+
+    revalidatePath("/", "layout");
+    redirect("/login?message=Account creato! Controlla la tua email per confermare.");
+}
